@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'josefi-sans': ['Josefin Sans', 'sans-serif']
+        'sans': ['Josefin Sans']
       },
       colors: {
         /* Primary */
         'bright-blue': 'hsl(220, 98%, 61%)',        
 
         /* Light Theme */
-        'very-light-gray': 'hsl(0, 0%, 98%)',
+        'very-light-gray': 'hsl(0, 0%, 97%)',
         'very-light-grayish-blue': 'hsl(236, 33%, 92%)',
         'light-grayish-blue': 'hsl(233, 11%, 84%)',
         'dark-grayish-blue': 'hsl(236, 9%, 61%)',

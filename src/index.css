@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-very-light-gray;
+  color: hsl(252, 11%, 91%);
+}
