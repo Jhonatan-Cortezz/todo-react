@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TodoItem, TodoActions } from '../todos'
+import { TodoItem, TodoActions, TodoFilter } from '../todos'
 
 const initialStateTodos = JSON.parse(localStorage.getItem('todos')) || []
 
@@ -59,10 +59,10 @@ const Main = () => {
   }, [todos])
   
   return (
-    <main className="px-6 -mt-[90px] flex flex-col space-y-4">
+    <main className="px-6 -mt-[90px] flex flex-col space-y-4 lg:max-w-[580px] lg:mx-auto lg:-mt-36 lg:space-y-6">
 
-      <form onSubmit={handlesubmit} className='flex items-center bg-white dark:bg-very-dark-desaturated-blue h-12 rounded-md px-5 space-x-[14px]'>
-        <span className='rounded-full border border-very-light-grayish-blue w-[22px] h-5 m-0 block'></span>
+      <form onSubmit={handlesubmit} className='flex items-center bg-white dark:bg-very-dark-desaturated-blue h-12 rounded-md px-5 space-x-[14px] lg:h-16 lg:px-8'>
+        <span className='rounded-full border border-very-light-grayish-blue w-[22px] h-5 m-0 block lg:h-6 lg:w-[26px] dark:border-very-dark-grayish-blue-2'></span>
         <input type="text"
           placeholder="Create a new todo..."
           className='w-full outline-none text-very-dark-grayish-blue dark:bg-very-dark-desaturated-blue dark:placeholder:text-very-dark-grayish-blue-1 dark:text-d-light-grayish-blue'
@@ -82,22 +82,12 @@ const Main = () => {
         <TodoActions
           todosItemLeft={todosItemLeft()}
           clearCompleted={clearCompleted}
+          filter={filter}
+          setFilter={setFilter}
         />
       </section>
 
-      <nav className="bg-white mb-11 px-5 py-4 rounded-md dark:bg-very-dark-desaturated-blue">
-        <ul className="flex flex-row justify-center space-x-4 font-bold text-dark-grayish-blue dark:text-very-dark-grayish-blue-1">
-          <li className={`${filter == 'all' && 'text-bright-blue'} hover:text-bright-blue`}>
-            <button onClick={() => setFilter('all')}>All</button>
-          </li>
-          <li className={`${filter == 'active' && 'text-bright-blue'} hover:text-bright-blue`}>
-            <button onClick={() => setFilter('active')}>Active</button>
-          </li>
-          <li className={`${filter == 'completed' && 'text-bright-blue'} hover:text-bright-blue`}>
-            <button onClick={() => setFilter('completed')}>Completed</button>
-          </li>
-        </ul>
-      </nav>
+      <TodoFilter filter={filter} setFilter={setFilter} className='lg:hidden'/>
     </main>
   )
 }

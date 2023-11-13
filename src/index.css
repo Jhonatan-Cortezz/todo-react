@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-very-light-gray dark:bg-very-dark-blue;
+  @apply bg-very-light-gray dark:bg-very-dark-blue text-sm lg:text-base;
 }
