@@ -61,17 +61,17 @@ const Main = () => {
   return (
     <main className="px-6 -mt-[90px] flex flex-col space-y-4">
 
-      <form onSubmit={handlesubmit} className='flex items-center bg-white h-12 rounded-md px-5 space-x-[14px]'>
+      <form onSubmit={handlesubmit} className='flex items-center bg-white dark:bg-very-dark-desaturated-blue h-12 rounded-md px-5 space-x-[14px]'>
         <span className='rounded-full border border-very-light-grayish-blue w-[22px] h-5 m-0 block'></span>
         <input type="text"
           placeholder="Create a new todo..."
-          className='w-full outline-none text-very-dark-grayish-blue'
+          className='w-full outline-none text-very-dark-grayish-blue dark:bg-very-dark-desaturated-blue dark:placeholder:text-very-dark-grayish-blue-1 dark:text-d-light-grayish-blue'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </form>
 
-      <section className='bg-white rounded-md divide-y divide-very-light-grayish-blue'>
+      <section className='bg-white dark:bg-very-dark-desaturated-blue rounded-md divide-y divide-very-light-grayish-blue dark:divide-very-dark-grayish-blue-2'>
         
         {
           filterTodo().map(todo => 
@@ -85,15 +85,15 @@ const Main = () => {
         />
       </section>
 
-      <nav className="bg-white mb-11 px-5 py-4 rounded-md">
-        <ul className="flex flex-row justify-center space-x-4 font-bold text-dark-grayish-blue">
-          <li className={`${filter == 'all' && 'text-bright-blue'}`}>
+      <nav className="bg-white mb-11 px-5 py-4 rounded-md dark:bg-very-dark-desaturated-blue">
+        <ul className="flex flex-row justify-center space-x-4 font-bold text-dark-grayish-blue dark:text-very-dark-grayish-blue-1">
+          <li className={`${filter == 'all' && 'text-bright-blue'} hover:text-bright-blue`}>
             <button onClick={() => setFilter('all')}>All</button>
           </li>
-          <li className={`${filter == 'active' && 'text-bright-blue'}`}>
+          <li className={`${filter == 'active' && 'text-bright-blue'} hover:text-bright-blue`}>
             <button onClick={() => setFilter('active')}>Active</button>
           </li>
-          <li className={`${filter == 'completed' && 'text-bright-blue'}`}>
+          <li className={`${filter == 'completed' && 'text-bright-blue'} hover:text-bright-blue`}>
             <button onClick={() => setFilter('completed')}>Completed</button>
           </li>
         </ul>
