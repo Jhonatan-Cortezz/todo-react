@@ -1,11 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TodoItem, TodoActions } from '../todos'
 
-const initialStateTodos = [
-  { id: 1, title: 'Got to buy xbox', completed: true },
-  { id: 2, title: 'Complete javascript course', completed: false },
-  { id: 3, title: 'Creare viws for my own project', completed: false },
-]
+const initialStateTodos = JSON.parse(localStorage.getItem('todos')) || []
+
 const Main = () => {
   const [ todos, setTodos ] = useState(initialStateTodos)
   const [ title, setTitle ] = useState('')
@@ -57,6 +54,9 @@ const Main = () => {
     setTitle('')
   }
   
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
   
   return (
     <main className="px-6 -mt-[90px] flex flex-col space-y-4">
