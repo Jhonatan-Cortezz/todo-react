@@ -6,7 +6,7 @@ const TodoActions = ({todosItemLeft, clearCompleted, filter, setFilter}) => {
 
       <TodoFilter filter={filter} setFilter={setFilter} className='hidden lg:block'/>
 
-      <button onClick={clearCompleted}>
+      <button onClick={clearCompleted} className='hover:text-very-dark-grayish-blue dark:hover:text-d-light-grayish-blue'>
         Clear completed
       </button>
     </section>

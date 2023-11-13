@@ -65,7 +65,7 @@ const Main = () => {
         <span className='rounded-full border border-very-light-grayish-blue w-[22px] h-5 m-0 block lg:h-6 lg:w-[26px] dark:border-very-dark-grayish-blue-2'></span>
         <input type="text"
           placeholder="Create a new todo..."
-          className='w-full outline-none text-very-dark-grayish-blue dark:bg-very-dark-desaturated-blue dark:placeholder:text-very-dark-grayish-blue-1 dark:text-d-light-grayish-blue'
+          className='w-full outline-none text-very-dark-grayish-blue dark:bg-very-dark-desaturated-blue dark:placeholder:text-very-dark-grayish-blue-1 dark:text-d-light-grayish-blue caret-bright-blue'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
