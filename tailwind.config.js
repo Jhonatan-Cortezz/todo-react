@@ -12,7 +12,11 @@ export default {
       },
       colors: {
         /* Primary */
-        'bright-blue': 'hsl(220, 98%, 61%)',        
+        'bright-blue': 'hsl(220, 98%, 61%)',  
+        
+        /* for gradients */
+        'custom-sky': 'hsl(192, 100%, 67%)',
+        'custom-purple': 'hsl(280, 87%, 65%)',
 
         /* Light Theme */
         'very-light-gray': 'hsl(0, 0%, 97%)',
@@ -31,7 +35,10 @@ export default {
         'very-dark-grayish-blue-2': 'hsl(237, 14%, 26%)'
       },
       backgroundImage: {
-        'check-background': 'hsl(192, 100%, 67%) to hsl(280, 87%, 65%)',
+        'mobile-light': "url('./assets/images/bg-mobile-light.jpg')",
+        'mobile-dark': "url('./assets/images/bg-mobile-dark.jpg')",
+        'desktop-light': "url('./assets/images/bg-desktop-light.jpg')",
+        'desktio-dark': "url('./assets/images/bg-desktop-dark.jpg')"
       }
     },
   },

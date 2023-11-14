@@ -21,13 +21,14 @@ const App = () => {
       htmlTag.classList.remove('dark')
     }
   }, [isDark])
- return (
-  <Fragment>
-    <Header toggleDark={toggleDark} isDark={isDark}/>
-    <Main />
-    <Footer />
-  </Fragment>
- )
+  
+  return (
+    <Fragment>
+      <Header toggleDark={toggleDark} isDark={isDark}/>
+      <Main />
+      <Footer />
+    </Fragment>
+  )
 }
 
 export default App
