@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react'
 import { TodoItem, TodoActions, TodoFilter } from '../todos'
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 
 const initialStateTodos = JSON.parse(localStorage.getItem('todos')) || []
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = [...list]
+  const [removed] = result.splice(startIndex, 1)
+  result.splice(endIndex, 0, removed)
+
+  return result
+}
+
 
 const Main = () => {
   const [ todos, setTodos ] = useState(initialStateTodos)
@@ -53,6 +63,21 @@ const Main = () => {
     createTodo(title)
     setTitle('')
   }
+
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+    if (!destination) return;
+    if (
+        source.index === destination.index &&
+        source.droppableId === destination.droppableId
+    )
+        return;
+
+    setTodos((prevTasks) =>
+        reorder(prevTasks, source.index, destination.index)
+    );
+  };
+  
   
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos))
@@ -71,21 +96,48 @@ const Main = () => {
         />
       </form>
 
-      <section className='bg-white dark:bg-very-dark-desaturated-blue rounded-md divide-y divide-very-light-grayish-blue dark:divide-very-dark-grayish-blue-2'>
-        
-        {
-          filterTodo().map(todo => 
-            <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} removeTodo={removeTodo}/>
-          )
-        }
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId='todos'>
+          {
+            (dropableProvider) => (
+              <section
+                ref={dropableProvider.innerRef}
+                {...dropableProvider.droppableProps}
+                className='bg-white dark:bg-very-dark-desaturated-blue rounded-md divide-y divide-very-light-grayish-blue dark:divide-very-dark-grayish-blue-2'
+              >
+                {
+                  filterTodo().map((todo, index) =>
+                    <Draggable key={todo.id} index={index} draggableId={`${todo.id}`}>
+                      {
+                        (dragableProvider) => (
+                          <TodoItem
+                            todo={todo}
+                            updateTodo={updateTodo}
+                            removeTodo={removeTodo}
+                            ref={dragableProvider.innerRef}
+                            {...dragableProvider.dragHandleProps}
+                            {...dragableProvider.draggableProps}
+                          />
+                        )
+                      }
+                    </Draggable>
+                  )
+                }
 
-        <TodoActions
-          todosItemLeft={todosItemLeft()}
-          clearCompleted={clearCompleted}
-          filter={filter}
-          setFilter={setFilter}
-        />
-      </section>
+                {dropableProvider.placeholder}
+
+                <TodoActions
+                  todosItemLeft={todosItemLeft()}
+                  clearCompleted={clearCompleted}
+                  filter={filter}
+                  setFilter={setFilter}
+                  />
+
+              </section>
+            )
+          }
+        </Droppable>
+      </DragDropContext>
 
       <TodoFilter filter={filter} setFilter={setFilter} className='lg:hidden'/>
     </main>
