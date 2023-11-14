@@ -106,6 +106,9 @@ const Main = () => {
                 className='bg-white dark:bg-very-dark-desaturated-blue rounded-md divide-y divide-very-light-grayish-blue dark:divide-very-dark-grayish-blue-2'
               >
                 {
+                  todos.length == 0 && <p className='py-4 lg:py-6 text-center text-very-dark-grayish-blue-1'>You don't have tasks</p>
+                }
+                {
                   filterTodo().map((todo, index) =>
                     <Draggable key={todo.id} index={index} draggableId={`${todo.id}`}>
                       {
